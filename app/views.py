@@ -4,14 +4,11 @@ from django.shortcuts import redirect, render
 from .forms import EmployeeForm
 # Create your views here.
 def Register(request):
-
-    context = {}
     if request.method == 'POST':
         context = EmployeeForm(request.POST)
         if context.is_valid():
             context.save()
-            context = EmployeeForm()
-
+    context = EmployeeForm()
     emp = Employee.objects.all()
     return render(request, 'app/register.html', {'form': context, 'employee': emp})
 
